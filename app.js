@@ -16,7 +16,7 @@ const bgImg = "home-bg.jpg";
 const post = {
   bgImg: "home-bg.jpg",
 };
-let id = 0;
+let id;
 
 app.post("/", (req, res) => {
   id = req.body.id;
