@@ -20,5 +20,11 @@ app.get("/about", (req, res) => {
 app.get("/contact", (req, res) => {
   res.render(__dirname + "/views/contact");
 });
+
+// Route to post page
+app.get("/post", (req, res) => {
+  res.render(__dirname + "/views/post");
+});
+
 app.use(express.static(__dirname + "/public"));
 app.listen(port, () => console.log(`Server running in port: ${port}`));
