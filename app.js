@@ -1,9 +1,15 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const port = 3000;
+import express from "express";
+import pkg from "body-parser";
+import { fileURLToPath } from "url";
+import path from "path";
 
+const { urlencoded } = pkg;
+const port = 3000;
+// Replacing __dirname in ES6 modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 const bgImg = "home-bg.jpg";
