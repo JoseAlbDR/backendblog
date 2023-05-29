@@ -38,7 +38,7 @@ blockquote {
 }
 
 #mainNav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -94,8 +94,6 @@ blockquote {
   }
   #mainNav.is-fixed {
     /* when the user scrolls down, we hide the header right above the viewport */
-    position: fixed;
-    /* top: -83px; */
     transition: all 0.5s ease;
     border-bottom: 1px solid white;
     background-color: rgba(255, 255, 255, 0.9);
@@ -116,8 +114,8 @@ blockquote {
   }
   #mainNav.is-visible {
     /* if the user changes the scrolling direction, we show the header */
-    transform: translate3d(0, 100%, 0);
-    transition: all 1s ease;
+    /* transform: translate3d(0, 100%, 0);
+    transition: all 1s ease; */
   }
 }
 
