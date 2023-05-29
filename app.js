@@ -26,5 +26,9 @@ app.get("/post", (req, res) => {
   res.render(__dirname + "/views/post");
 });
 
+// Route to compose page
+app.get("/compose", (req, res) => {
+  res.render(__dirname + "/views/compose");
+});
 app.use(express.static(__dirname + "/public"));
 app.listen(port, () => console.log(`Server running in port: ${port}`));
