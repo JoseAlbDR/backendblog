@@ -1,18 +1,19 @@
  <!-- Post preview-->
  <% postData.forEach(post =>{ %>
-  <% console.log(post) %>
   <div class="post-preview">
-    <a href="post">
-      <h2 class="post-title">
-        <%= post.postTitle %>
-      </h2>
-      <h3 class="post-subtitle">
-        <%= post.postSubtitle %>
-      </h3>
-    </a>
+    <form action="/" method="POST">
+      <button type="submit" name="id" value="<%= post.id %>" class="btn-link">
+        <h2 class="post-title">
+          <%= post.postTitle %>
+        </h2>
+        <h3 class="post-subtitle">
+          <%= post.postSubtitle %>
+        </h3>
+      </button>
+    </form>
     <p class="post-meta">
       Posted by
-      <a href="#!">Start Bootstrap</a>
+      <a href=<%= post.web %> target="_blank"><%= post.author %></a>
       on <%= post.postDate %>
     </p>
   </div>
