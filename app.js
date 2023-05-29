@@ -2,6 +2,7 @@ import express from "express";
 import pkg from "body-parser";
 import { fileURLToPath } from "url";
 import path from "path";
+import { postData } from "./public/js/data.js";
 
 const { urlencoded } = pkg;
 const port = 3000;
@@ -11,9 +12,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-
 const bgImg = "home-bg.jpg";
-
 const post = {
   bgImg: "home-bg.jpg",
 };
@@ -22,7 +21,12 @@ app.get;
 
 // Route to root page (index)
 app.get("/", (req, res) => {
-  res.render("home", { bgImg: "home-bg.jpg" });
+  // console.log(postData);
+
+  res.render("home", {
+    bgImg: "home-bg.jpg",
+    postData: postData,
+  });
 });
 
 // Route to about page
