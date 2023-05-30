@@ -10,6 +10,16 @@ export const blogData = {
 };
 
 // Post data object
+// {
+//   postTitle: 'Title',
+//   postSubtitle: 'Subtitle',
+//   author: 'Author',
+//   web: 'https://www.yourweb.com',
+//   content: 'Content',
+//   bgImg: 'background.jpg',
+//   id: 0, -> id number (max postData.length)
+//   postDate: 'Tuesday, May 30' -> Generated with an util
+// }
 export const postData = [];
 
 export const aboutData = {
