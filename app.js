@@ -30,7 +30,7 @@ app.post("/", (req, res) => {
     res.redirect("/compose");
   } else {
     const id = req.body.id.split(",")[0];
-    const title = req.body.id.split(",")[1];
+    const title = req.body.id.split(",")[1].toLowerCase().split(" ").join("-");
     // Go to the post clicked
     res.redirect(`/posts/${id}/${title}`);
   }
