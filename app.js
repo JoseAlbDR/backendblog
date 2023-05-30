@@ -29,15 +29,16 @@ app.post("/", (req, res) => {
   if (postData.length === 0) {
     res.redirect("/compose");
   } else {
+    const id = req.body.id.split(",")[0];
+    const title = req.body.id.split(",")[1];
     // Go to the post clicked
-    res.redirect(`/posts/${req.body.id}`);
+    res.redirect(`/posts/${id}/${title}`);
   }
 });
 
 // Compose new post
 app.post("/compose", (req, res) => {
   const data = req.body;
-  console.log(data);
 
   data.bgImg = req.body.bgImg || blogData.bgImg;
   data.id = postData.length;
@@ -74,7 +75,9 @@ app.get("/contact", (req, res) => {
 });
 
 // Route to post by id
-app.get("/posts/:id", (req, res) => {
+app.get("/posts/:id/:title", (req, res) => {
+  console.log(req.params);
+
   const id = req.params.id;
   res.render("post", {
     data: postData[id],
@@ -96,12 +99,13 @@ app.get("/post", (req, res) => {
       postData: [{ content: "Aun no hay post." }],
       id: 0,
     });
+
     // Last post data
   } else {
     res.render("post", {
       postData: postData,
-      id: postData.length - 1,
       blogData: blogData,
+      id: postData.length - 1,
       data: postData[postData.length - 1],
     });
   }

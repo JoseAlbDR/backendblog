@@ -11,7 +11,7 @@
  <% postData.slice().reverse().forEach(post =>{ %>
   <div class="post-preview">
     <form action="/" method="POST">
-      <button type="submit" name="id" value="<%= post.id %>" class="btn-link text-start ">
+      <button type="submit" name="id" value="<%= [post.id, post.title] %>" class="btn-link text-start ">
         <h2 class="post-title">
           <%= post.title %>
         </h2>
