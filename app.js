@@ -8,10 +8,7 @@ import {
   homeData,
   contactData,
   composeData,
-  defaultImg,
-  portfolioURL,
-  linkedinURL,
-  githubURL,
+  blogData,
 } from "./public/js/data.js";
 import { getDate } from "./public/js/utils.js";
 
@@ -41,8 +38,10 @@ app.get("/", (req, res) => {
     postData: postData,
     title: homeData.title,
     subtitle: homeData.subtitle || "",
-    linkedinURL: linkedinURL,
-    githubURL: githubURL,
+    linkedinURL: blogData.linkedinURL,
+    githubURL: blogData.githubURL,
+    mainWebURL: blogData.mainWebURL,
+    blogOwner: blogData.blogOwner,
   });
 });
 
@@ -53,8 +52,10 @@ app.get("/about", (req, res) => {
     title: aboutData.title,
     subtitle: aboutData.subtitle,
     content: aboutData.content,
-    linkedinURL: linkedinURL,
-    githubURL: githubURL,
+    linkedinURL: blogData.linkedinURL,
+    githubURL: blogData.githubURL,
+    mainWebURL: blogData.mainWebURL,
+    blogOwner: blogData.blogOwner,
   });
 });
 
@@ -65,8 +66,10 @@ app.get("/contact", (req, res) => {
     title: contactData.title,
     subtitle: contactData.subtitle,
     content: contactData.content,
-    linkedinURL: linkedinURL,
-    githubURL: githubURL,
+    linkedinURL: blogData.linkedinURL,
+    githubURL: blogData.githubURL,
+    mainWebURL: blogData.mainWebURL,
+    blogOwner: blogData.blogOwner,
   });
 });
 
@@ -78,13 +81,15 @@ app.get("/post", (req, res) => {
     title: postData[id || 0].postTitle,
     subtitle: postData[id || 0].postSubtitle,
     id: id || 0,
-    linkedinURL: linkedinURL,
-    githubURL: githubURL,
+    linkedinURL: blogData.linkedinURL,
+    githubURL: blogData.githubURL,
+    mainWebURL: blogData.mainWebURL,
+    blogOwner: blogData.blogOwner,
   });
 });
 
 app.get("/portfolio", (req, res) => {
-  res.redirect(portfolioURL);
+  res.redirect(blogData.mainWebURL);
 });
 
 // Route to compose page
@@ -94,14 +99,16 @@ app.get("/compose", (req, res) => {
     title: composeData.title,
     subtitle: composeData.subtitle,
     content: composeData.content,
-    linkedinURL: linkedinURL,
-    githubURL: githubURL,
+    linkedinURL: blogData.linkedinURL,
+    githubURL: blogData.githubURL,
+    mainWebURL: blogData.mainWebURL,
+    blogOwner: blogData.blogOwner,
   });
 });
 
 app.post("/compose", (req, res) => {
   const data = req.body;
-  data.bgImg = req.body.bgImg || defaultImg;
+  data.bgImg = req.body.bgImg || blogData.defaultImg;
   data.id = postData.length;
   data.postDate = getDate();
   postData.push(data);

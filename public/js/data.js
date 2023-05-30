@@ -1,10 +1,13 @@
 import { getDate } from "./utils.js";
 let id = 0;
 
-export const defaultImg = "compose-bg.jpg";
-export const portfolioURL = "https://www.jadelgadorobles.com";
-export const linkedinURL = "https://www.linkedin.com/in/jalbertodelgado/";
-export const githubURL = "https://github.com/JoseAlbDR";
+export const blogData = {
+  defaultImg: "compose-bg.jpg",
+  linkedinURL: "https://www.linkedin.com/in/jalbertodelgado/",
+  githubURL: "https://github.com/JoseAlbDR",
+  mainWebURL: "https://www.jadelgadorobles.com",
+  blogOwner: "J.A.Delgado",
+};
 
 export const postData = [
   {
