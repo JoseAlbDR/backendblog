@@ -27,3 +27,24 @@ export const postData = [
     <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>`,
   },
 ];
+
+export const aboutData = {
+  bgImg: "about-bg.jpg",
+  title: "Sobre Mí.",
+  subtitle: "Algunas cosillas sobre mi",
+  content:
+    "¡Hola! Soy J. Alberto Delgado, un estudiante principiante de desarrollo web. Mi pasión es resolver problemas a través de la programación. Actualmente, me encuentro en un bootcamp de desarrollo web full stack, ampliando mis habilidades en front-end y back-end. Mi meta es crecer como profesional en el desarrollo web y aportar mi conocimiento a proyectos futuros.",
+};
+
+export const homeData = {
+  bgImg: "home-bg.jpg",
+  title: "Blog J.Alberto Delgado",
+  subtitle: "Aquí ire dejando dichas mis cositas.",
+};
+
+export const contactData = {
+  bgImg: "contact-bg.jpg",
+  title: "Contacta conmigo.",
+  subtitle:
+    "Rellena el formulario y me pondré en contacto contigo lo antes posible.",
+};
