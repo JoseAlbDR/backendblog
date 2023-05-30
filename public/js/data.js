@@ -1,6 +1,4 @@
-import { getDate } from "./utils.js";
-let id = 0;
-
+// Blog general data (customizable)
 export const blogData = {
   defaultImg: "compose-bg.jpg",
   linkedinURL: "https://www.linkedin.com/in/jalbertodelgado/",
@@ -11,6 +9,7 @@ export const blogData = {
     "Aún no hay ninguna entrada en el blog, ¡Prueba a escribir algo!",
 };
 
+// Post data object
 export const postData = [];
 
 export const aboutData = {

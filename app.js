@@ -27,19 +27,23 @@ let id;
 
 // Post request
 app.post("/", (req, res) => {
+  // If there is no post, go make one
   if (postData.length === 0) {
     res.redirect("/compose");
   } else {
+    // Go to the post clicked
     id = req.body.id;
     res.redirect("/post");
   }
 });
 
+// Compose new post
 app.post("/compose", (req, res) => {
   const data = req.body;
   data.bgImg = req.body.bgImg || blogData.defaultImg;
   data.id = postData.length;
   data.postDate = getDate();
+  // Save post and go home
   postData.push(data);
   res.redirect("/");
 });
@@ -90,6 +94,7 @@ app.get("/contact", (req, res) => {
 
 // Route to post page
 app.get("/post", (req, res) => {
+  // Default data
   if (postData.length === 0) {
     res.render("post", {
       bgImg: blogData.defaultImg,
@@ -102,6 +107,7 @@ app.get("/post", (req, res) => {
       postData: [{ content: "Aun no hay post." }],
       id: 0,
     });
+    // Last post data
   } else {
     res.render("post", {
       bgImg: postData[id].bgImg,
