@@ -7,7 +7,10 @@ import {
   aboutData,
   homeData,
   contactData,
+  composeData,
+  defaultImg,
 } from "./public/js/data.js";
+import { getDate } from "./public/js/utils.js";
 
 const { urlencoded } = pkg;
 const port = 3000;
@@ -23,19 +26,18 @@ app.set("view engine", "ejs");
 let id;
 
 app.post("/", (req, res) => {
+  console.log(req.body);
   id = req.body.id;
   res.redirect("/post");
 });
 
 // Route to root page (index)
 app.get("/", (req, res) => {
-  // console.log(postData);
-
   res.render("home", {
     bgImg: homeData.bgImg,
     postData: postData,
     title: homeData.title,
-    subtitle: homeData.subtitle,
+    subtitle: homeData.subtitle || "",
   });
 });
 
@@ -55,6 +57,7 @@ app.get("/contact", (req, res) => {
     bgImg: contactData.bgImg,
     title: contactData.title,
     subtitle: contactData.subtitle,
+    content: contactData.content,
   });
 });
 
@@ -71,7 +74,21 @@ app.get("/post", (req, res) => {
 
 // Route to compose page
 app.get("/compose", (req, res) => {
-  res.render(__dirname + "/views/compose");
+  res.render("compose", {
+    bgImg: composeData.bgImg,
+    title: composeData.title,
+    subtitle: composeData.subtitle,
+    content: composeData.content,
+  });
+});
+
+app.post("/compose", (req, res) => {
+  const data = req.body;
+  data.bgImg = req.body.bgImg || defaultImg;
+  data.id = postData.length;
+  data.postDate = getDate();
+  postData.push(data);
+  res.redirect("/");
 });
 
 // Public dir

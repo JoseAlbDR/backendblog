@@ -1,3 +1,72 @@
 <%- include("partials/header"); -%>
-
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+          <p><%= content %></p>
+          <div class="my-5">
+              <!-- * * * * * * * * * * * * * * *-->
+              <!-- * * SB Forms Contact Form * *-->
+              <!-- * * * * * * * * * * * * * * *-->
+              <!-- This form is pre-integrated with SB Forms.-->
+              <!-- To make this form functional, sign up at-->
+              <!-- https://startbootstrap.com/solution/contact-forms-->
+              <!-- to get an API token!-->
+              <form id="contactForm" action="compose" method="POST">
+                  <div class="form-floating">
+                      <input class="form-control pt-5" id="title" name="postTitle" type="text" placeholder="Escribe el titulo..." data-sb-validations="required" autofocus/>
+                      <label for="title">Titulo</label>
+                      <div class="invalid-feedback" data-sb-feedback="name:required">Se requiere un titulo.</div>
+                  </div>
+                  <div class="form-floating">
+                      <input class="form-control pt-5" name="postSubtitle" id="subtitle" type="text" placeholder="Escribe el subtitulo..."  />
+                      <label for="subtitle">Subtitulo</label>
+                      <!-- <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                      <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div> -->
+                  </div>
+                  <!-- <div class="form-floating">
+                      <input class="form-control" id="bgImg" name="bgImg" type="file" placeholder="Sube una imagen"  />
+                      <label for="phone">Imágen</label>
+                      <input class="mt-2" type="submit">
+                      <div class="invalid-feedback" data-sb-feedback="phone:required">Se necesita una imagen.</div>
+                  </div> -->
+                  <div class="form-floating">
+                    <input class="form-control pt-5" id="autor" name="author" type="text" placeholder="Escribe el titulo..." data-sb-validations="required" />
+                    <label for="autor">Autor</label>
+                    <div class="invalid-feedback" data-sb-feedback="name:required">Se requiere un Autor.</div>
+                </div>
+                <div class="form-floating">
+                  <input class="form-control pt-5" id="web" name="web" type="text" placeholder="Escribe el titulo..." />
+                  <label for="name">Página Web Autor</label>
+                  <!-- <div class="invalid-feedback" data-sb-feedback="name:required">Se requiere un titulo.</div> -->
+              </div>
+                  <div class="form-floating">
+                      <textarea class="form-control pt-5" id="content" name="content" placeholder="Escribe tu contenido aquí..." style="height: 12rem" data-sb-validations="required"></textarea>
+                      <label for="message">Contenido</label>
+                      <div class="invalid-feedback" data-sb-feedback="message:required">Se necesita contenido.</div>
+                  </div>
+                  <br />
+                  <!-- Submit success message-->
+                  <!---->
+                  <!-- This is what your users will see when the form-->
+                  <!-- has successfully submitted-->
+                  <div class="d-none" id="submitSuccessMessage">
+                      <div class="text-center mb-3">
+                          <div class="fw-bolder">Form submission successful!</div>
+                          To activate this form, sign up at
+                          <br />
+                          <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                      </div>
+                  </div>
+                  <!-- Submit error message-->
+                  <!---->
+                  <!-- This is what your users will see when there is-->
+                  <!-- an error submitting the form-->
+                  <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                  <!-- Submit Button-->
+                  <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Publicar</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
 <%- include("partials/footer"); -%>
