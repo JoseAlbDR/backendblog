@@ -2,6 +2,7 @@ import express from "express";
 import pkg from "body-parser";
 import { fileURLToPath } from "url";
 import path from "path";
+import _ from "lodash";
 import {
   postData,
   aboutData,
@@ -30,7 +31,7 @@ app.post("/", (req, res) => {
     res.redirect("/compose");
   } else {
     const id = req.body.id.split(",")[0];
-    const title = req.body.id.split(",")[1].toLowerCase().split(" ").join("-");
+    const title = _.lowerCase(req.body.id.split(",")[1]).split(" ").join("-");
     // Go to the post clicked
     res.redirect(`/posts/${id}/${title}`);
   }
