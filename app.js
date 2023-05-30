@@ -28,12 +28,13 @@ let id;
 // Post request
 app.post("/", (req, res) => {
   // If there is no post, go make one
+
   if (postData.length === 0) {
     res.redirect("/compose");
   } else {
     // Go to the post clicked
     id = req.body.id;
-    res.redirect("/post");
+    res.redirect(`/post/${id}`);
   }
 });
 
@@ -93,8 +94,10 @@ app.get("/contact", (req, res) => {
 });
 
 // Route to post page
-app.get("/post", (req, res) => {
+app.get("/post/:id", (req, res) => {
   // Default data
+  console.log(req.params.id);
+
   if (postData.length === 0) {
     res.render("post", {
       bgImg: blogData.defaultImg,
