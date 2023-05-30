@@ -1,12 +1,13 @@
 // Blog general data (customizable)
 export const blogData = {
-  defaultImg: "compose-bg.jpg",
   linkedinURL: "https://www.linkedin.com/in/jalbertodelgado/",
   githubURL: "https://github.com/JoseAlbDR",
   mainWebURL: "https://www.jadelgadorobles.com",
   blogOwner: "J.A.Delgado",
-  defaultPost:
-    "Aún no hay ninguna entrada en el blog, ¡Prueba a escribir algo!",
+
+  // When there is no post yet
+  title: "Aún no hay ninguna entrada en el blog, ¡Prueba a escribir algo!",
+  bgImg: "compose-bg.jpg",
 };
 
 // Post data object

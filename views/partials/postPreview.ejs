@@ -2,7 +2,7 @@
  <% if(postData.length === 0){%>
   <div class="post-preview">
     <h2 class="post-title">
-      <%= defaultPost %>
+      <%= blogData.title %>
   </div>
   <form action="/" method="POST">
     <button class="mb-5" name="writeEntrie" value="newEntrie">Escribir Entrada</button>
@@ -13,10 +13,10 @@
     <form action="/" method="POST">
       <button type="submit" name="id" value="<%= post.id %>" class="btn-link text-start ">
         <h2 class="post-title">
-          <%= post.postTitle %>
+          <%= post.title %>
         </h2>
         <h3 class="post-subtitle">
-          <%= post.postSubtitle %>
+          <%= post.subtitle %>
         </h3>
       </button>
     </form>

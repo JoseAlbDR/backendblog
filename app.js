@@ -37,7 +37,9 @@ app.post("/", (req, res) => {
 // Compose new post
 app.post("/compose", (req, res) => {
   const data = req.body;
-  data.bgImg = req.body.bgImg || blogData.defaultImg;
+  console.log(data);
+
+  data.bgImg = req.body.bgImg || blogData.bgImg;
   data.id = postData.length;
   data.postDate = getDate();
   // Save post and go home
@@ -49,43 +51,25 @@ app.post("/compose", (req, res) => {
 // Route to root page (index)
 app.get("/", (req, res) => {
   res.render("home", {
-    bgImg: homeData.bgImg,
     postData: postData,
-    title: homeData.title,
-    subtitle: homeData.subtitle || "",
-    linkedinURL: blogData.linkedinURL,
-    githubURL: blogData.githubURL,
-    mainWebURL: blogData.mainWebURL,
-    blogOwner: blogData.blogOwner,
-    defaultPost: blogData.defaultPost,
+    data: homeData,
+    blogData: blogData,
   });
 });
 
 // Route to about page
 app.get("/about", (req, res) => {
   res.render("about", {
-    bgImg: aboutData.bgImg,
-    title: aboutData.title,
-    subtitle: aboutData.subtitle,
-    content: aboutData.content,
-    linkedinURL: blogData.linkedinURL,
-    githubURL: blogData.githubURL,
-    mainWebURL: blogData.mainWebURL,
-    blogOwner: blogData.blogOwner,
+    data: aboutData,
+    blogData: blogData,
   });
 });
 
 // Route to contact page
 app.get("/contact", (req, res) => {
   res.render("contact", {
-    bgImg: contactData.bgImg,
-    title: contactData.title,
-    subtitle: contactData.subtitle,
-    content: contactData.content,
-    linkedinURL: blogData.linkedinURL,
-    githubURL: blogData.githubURL,
-    mainWebURL: blogData.mainWebURL,
-    blogOwner: blogData.blogOwner,
+    data: contactData,
+    blogData: blogData,
   });
 });
 
@@ -93,15 +77,10 @@ app.get("/contact", (req, res) => {
 app.get("/posts/:id", (req, res) => {
   const id = req.params.id;
   res.render("post", {
-    bgImg: postData[id].bgImg,
-    postData: postData,
-    title: postData[id].postTitle,
-    subtitle: postData[id].postSubtitle,
+    data: postData[id],
     id: id,
-    linkedinURL: blogData.linkedinURL,
-    githubURL: blogData.githubURL,
-    mainWebURL: blogData.mainWebURL,
-    blogOwner: blogData.blogOwner,
+    blogData: blogData,
+    postData: postData,
   });
 });
 
@@ -110,11 +89,8 @@ app.get("/post", (req, res) => {
   // Default data
   if (postData.length === 0) {
     res.render("post", {
-      bgImg: blogData.defaultImg,
-      linkedinURL: blogData.linkedinURL,
-      githubURL: blogData.githubURL,
-      mainWebURL: blogData.mainWebURL,
-      blogOwner: blogData.blogOwner,
+      data: blogData,
+      blogData: blogData,
       title: blogData.defaultPost,
       subtitle: "",
       postData: [{ content: "Aun no hay post." }],
@@ -123,19 +99,15 @@ app.get("/post", (req, res) => {
     // Last post data
   } else {
     res.render("post", {
-      bgImg: postData[postData.length - 1].bgImg,
       postData: postData,
-      title: postData[postData.length - 1].postTitle,
-      subtitle: postData[postData.length - 1].postSubtitle,
       id: postData.length - 1,
-      linkedinURL: blogData.linkedinURL,
-      githubURL: blogData.githubURL,
-      mainWebURL: blogData.mainWebURL,
-      blogOwner: blogData.blogOwner,
+      blogData: blogData,
+      data: postData[postData.length - 1],
     });
   }
 });
 
+// Route to external link
 app.get("/portfolio", (req, res) => {
   res.redirect(blogData.mainWebURL);
 });
@@ -143,14 +115,8 @@ app.get("/portfolio", (req, res) => {
 // Route to compose page
 app.get("/compose", (req, res) => {
   res.render("compose", {
-    bgImg: composeData.bgImg,
-    title: composeData.title,
-    subtitle: composeData.subtitle,
-    content: composeData.content,
-    linkedinURL: blogData.linkedinURL,
-    githubURL: blogData.githubURL,
-    mainWebURL: blogData.mainWebURL,
-    blogOwner: blogData.blogOwner,
+    data: composeData,
+    blogData: blogData,
   });
 });
 
