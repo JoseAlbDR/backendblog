@@ -23,8 +23,6 @@ const app = express();
 app.use(urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-let id;
-
 // Post request
 app.post("/", (req, res) => {
   // If there is no post, go make one
@@ -32,8 +30,7 @@ app.post("/", (req, res) => {
     res.redirect("/compose");
   } else {
     // Go to the post clicked
-    id = req.body.id;
-    res.redirect("/post");
+    res.redirect(`/posts/${req.body.id}`);
   }
 });
 
@@ -92,6 +89,22 @@ app.get("/contact", (req, res) => {
   });
 });
 
+// Route to post by id
+app.get("/posts/:id", (req, res) => {
+  const id = req.params.id;
+  res.render("post", {
+    bgImg: postData[id].bgImg,
+    postData: postData,
+    title: postData[id].postTitle,
+    subtitle: postData[id].postSubtitle,
+    id: id,
+    linkedinURL: blogData.linkedinURL,
+    githubURL: blogData.githubURL,
+    mainWebURL: blogData.mainWebURL,
+    blogOwner: blogData.blogOwner,
+  });
+});
+
 // Route to post page
 app.get("/post", (req, res) => {
   // Default data
@@ -110,11 +123,11 @@ app.get("/post", (req, res) => {
     // Last post data
   } else {
     res.render("post", {
-      bgImg: postData[id || postData.length - 1].bgImg,
+      bgImg: postData[postData.length - 1].bgImg,
       postData: postData,
-      title: postData[id || postData.length - 1].postTitle,
-      subtitle: postData[id || postData.length - 1].postSubtitle,
-      id: id || postData.length - 1,
+      title: postData[postData.length - 1].postTitle,
+      subtitle: postData[postData.length - 1].postSubtitle,
+      id: postData.length - 1,
       linkedinURL: blogData.linkedinURL,
       githubURL: blogData.githubURL,
       mainWebURL: blogData.mainWebURL,
