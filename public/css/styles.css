@@ -83,6 +83,11 @@ blockquote {
   #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
     color: rgba(255, 255, 255, 0.8);
   }
+  #mainNav .list-inline-item:hover,
+  #mainNav .list-inline-item:focus {
+    fill: rgba(255, 255, 255);
+    opacity: 0.8;
+  }
 }
 @media (min-width: 992px) {
   #mainNav {
