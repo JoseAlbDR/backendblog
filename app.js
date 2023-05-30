@@ -23,8 +23,6 @@ const app = express();
 app.use(urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-let id;
-
 // Post request
 app.post("/", (req, res) => {
   // If there is no post, go make one
@@ -33,8 +31,7 @@ app.post("/", (req, res) => {
     res.redirect("/compose");
   } else {
     // Go to the post clicked
-    id = req.body.id;
-    res.redirect(`/post/${id}`);
+    res.redirect(`/post/${req.body.id}`);
   }
 });
 
@@ -96,8 +93,6 @@ app.get("/contact", (req, res) => {
 // Route to post page
 app.get("/post/:id", (req, res) => {
   // Default data
-  console.log(req.params.id);
-
   if (postData.length === 0) {
     res.render("post", {
       bgImg: blogData.defaultImg,
@@ -113,11 +108,11 @@ app.get("/post/:id", (req, res) => {
     // Last post data
   } else {
     res.render("post", {
-      bgImg: postData[id].bgImg,
+      bgImg: postData[req.params.id].bgImg,
       postData: postData,
-      title: postData[id].postTitle,
-      subtitle: postData[id].postSubtitle,
-      id: id,
+      title: postData[req.params.id].postTitle,
+      subtitle: postData[req.params.id].postSubtitle,
+      id: req.params.id,
       linkedinURL: blogData.linkedinURL,
       githubURL: blogData.githubURL,
       mainWebURL: blogData.mainWebURL,
