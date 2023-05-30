@@ -1,5 +1,11 @@
 import { getDate } from "./utils.js";
 let id = 0;
+
+export const defaultImg = "compose-bg.jpg";
+export const portfolioURL = "https://www.jadelgadorobles.com";
+export const linkedinURL = "https://www.linkedin.com/in/jalbertodelgado/";
+export const githubURL = "https://github.com/JoseAlbDR";
+
 export const postData = [
   {
     postTitle: "Man must explore, and this is exploration at its greatest",
@@ -31,9 +37,9 @@ export const contactData = {
   bgImg: "contact-bg.jpg",
   title: "Contacta conmigo.",
   subtitle:
-    "Rellena el formulario y me pondré en contacto contigo lo antes posible.",
+    "A parte de a traves de mis redes sociales puedes usar el siguiente formulario.",
   content:
-    "Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!",
+    "¿Quieres ponerte en contácto? No dudes en rellenar el siguiente formulario y me pondré en contácto contigo lo antes posible.",
 };
 
 export const composeData = {
@@ -42,5 +48,3 @@ export const composeData = {
   subtitle: "Si estás aqui es porque quieres escribir algo.",
   content: "Es hora de escribir!",
 };
-
-export const defaultImg = "compose-bg.jpg";
