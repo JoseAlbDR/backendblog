@@ -1,7 +1,6 @@
 body {
   font-size: 1.25rem;
 }
-
 hr {
   border-color: #dee2e6;
   opacity: 1;
@@ -110,6 +109,12 @@ blockquote {
   #mainNav.is-fixed .navbar-brand:hover {
     color: #0085a1;
   }
+
+  #mainNav.is-fixed .list-inline-item:focus svg,
+  #mainNav.is-fixed .list-inline-item:hover svg {
+    fill: #0085a1;
+  }
+
   #mainNav.is-fixed .navbar-nav > li.nav-item > a {
     color: #212529;
   }

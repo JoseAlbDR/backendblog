@@ -5,13 +5,13 @@
       <%= defaultPost %>
   </div>
   <form action="/" method="POST">
-    <button name="writeEntrie" value="newEntrie">Escribir Entrada</button>
+    <button class="mb-5" name="writeEntrie" value="newEntrie">Escribir Entrada</button>
   </form>
 <% }else{ %>
  <% postData.forEach(post =>{ %>
   <div class="post-preview">
     <form action="/" method="POST">
-      <button type="submit" name="id" value="<%= post.id %>" class="btn-link">
+      <button type="submit" name="id" value="<%= post.id %>" class="btn-link text-start ">
         <h2 class="post-title">
           <%= post.postTitle %>
         </h2>
