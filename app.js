@@ -40,7 +40,6 @@ app.post("/", (req, res) => {
 // Compose new post
 app.post("/compose", (req, res) => {
   const data = req.body;
-
   data.bgImg = req.body.bgImg || blogData.bgImg;
   data.id = postData.length;
   data.postDate = getDate();
@@ -77,8 +76,6 @@ app.get("/contact", (req, res) => {
 
 // Route to post by id
 app.get("/posts/:id/:title", (req, res) => {
-  console.log(req.params);
-
   const id = req.params.id;
   res.render("post", {
     data: postData[id],
