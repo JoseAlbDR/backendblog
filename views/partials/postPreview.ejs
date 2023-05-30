@@ -1,4 +1,13 @@
  <!-- Post preview-->
+ <% if(postData.length === 0){%>
+  <div class="post-preview">
+    <h2 class="post-title">
+      <%= defaultPost %>
+  </div>
+  <form action="/" method="POST">
+    <button name="writeEntrie" value="newEntrie">Escribir Entrada</button>
+  </form>
+<% }else{ %>
  <% postData.forEach(post =>{ %>
   <div class="post-preview">
     <form action="/" method="POST">
@@ -19,4 +28,5 @@
   </div>
   <hr class="my-4" />
  <%})%>
+ <% } %>
  

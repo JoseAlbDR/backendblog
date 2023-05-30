@@ -7,20 +7,11 @@ export const blogData = {
   githubURL: "https://github.com/JoseAlbDR",
   mainWebURL: "https://www.jadelgadorobles.com",
   blogOwner: "J.A.Delgado",
+  defaultPost:
+    "Aún no hay ninguna entrada en el blog, ¡Prueba a escribir algo!",
 };
 
-export const postData = [
-  {
-    postTitle: "Man must explore, and this is exploration at its greatest",
-    postSubtitle: "Problems look mighty small from 150 miles up",
-    postDate: getDate(),
-    id: id++,
-    author: "J.Alberto Delgado",
-    bgImg: "post-bg.jpg",
-    web: "https://www.jadelgadorobles.com",
-    content: `<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>`,
-  },
-];
+export const postData = [];
 
 export const aboutData = {
   bgImg: "about-bg.jpg",

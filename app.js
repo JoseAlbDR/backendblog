@@ -26,9 +26,12 @@ app.set("view engine", "ejs");
 let id;
 
 app.post("/", (req, res) => {
-  console.log(req.body);
-  id = req.body.id;
-  res.redirect("/post");
+  if (postData.length === 0) {
+    res.redirect("/compose");
+  } else {
+    id = req.body.id;
+    res.redirect("/post");
+  }
 });
 
 // Route to root page (index)
@@ -42,6 +45,7 @@ app.get("/", (req, res) => {
     githubURL: blogData.githubURL,
     mainWebURL: blogData.mainWebURL,
     blogOwner: blogData.blogOwner,
+    defaultPost: blogData.defaultPost,
   });
 });
 
