@@ -25,6 +25,7 @@ app.set("view engine", "ejs");
 
 let id;
 
+// Post request
 app.post("/", (req, res) => {
   if (postData.length === 0) {
     res.redirect("/compose");
@@ -34,6 +35,16 @@ app.post("/", (req, res) => {
   }
 });
 
+app.post("/compose", (req, res) => {
+  const data = req.body;
+  data.bgImg = req.body.bgImg || blogData.defaultImg;
+  data.id = postData.length;
+  data.postDate = getDate();
+  postData.push(data);
+  res.redirect("/");
+});
+
+// Get request
 // Route to root page (index)
 app.get("/", (req, res) => {
   res.render("home", {
@@ -79,17 +90,31 @@ app.get("/contact", (req, res) => {
 
 // Route to post page
 app.get("/post", (req, res) => {
-  res.render("post", {
-    bgImg: postData[id || 0].bgImg,
-    postData: postData,
-    title: postData[id || 0].postTitle,
-    subtitle: postData[id || 0].postSubtitle,
-    id: id || 0,
-    linkedinURL: blogData.linkedinURL,
-    githubURL: blogData.githubURL,
-    mainWebURL: blogData.mainWebURL,
-    blogOwner: blogData.blogOwner,
-  });
+  if (postData.length === 0) {
+    res.render("post", {
+      bgImg: blogData.defaultImg,
+      linkedinURL: blogData.linkedinURL,
+      githubURL: blogData.githubURL,
+      mainWebURL: blogData.mainWebURL,
+      blogOwner: blogData.blogOwner,
+      title: blogData.defaultPost,
+      subtitle: "",
+      postData: [{ content: "Aun no hay post." }],
+      id: 0,
+    });
+  } else {
+    res.render("post", {
+      bgImg: postData[id].bgImg,
+      postData: postData,
+      title: postData[id].postTitle,
+      subtitle: postData[id].postSubtitle,
+      id: id,
+      linkedinURL: blogData.linkedinURL,
+      githubURL: blogData.githubURL,
+      mainWebURL: blogData.mainWebURL,
+      blogOwner: blogData.blogOwner,
+    });
+  }
 });
 
 app.get("/portfolio", (req, res) => {
@@ -110,15 +135,8 @@ app.get("/compose", (req, res) => {
   });
 });
 
-app.post("/compose", (req, res) => {
-  const data = req.body;
-  data.bgImg = req.body.bgImg || blogData.defaultImg;
-  data.id = postData.length;
-  data.postDate = getDate();
-  postData.push(data);
-  res.redirect("/");
-});
-
 // Public dir
 app.use(express.static(__dirname + "/public"));
-app.listen(port, () => console.log(`Server running in port: ${port}`));
+app.listen(process.env.PORT || port, () =>
+  console.log(`Server running in port: ${port}`)
+);

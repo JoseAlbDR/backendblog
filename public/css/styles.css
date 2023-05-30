@@ -122,11 +122,11 @@ blockquote {
   #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
     color: #0085a1;
   }
-  #mainNav.is-visible {
-    /* if the user changes the scrolling direction, we show the header */
-    /* transform: translate3d(0, 100%, 0);
-    transition: all 1s ease; */
-  }
+  /* #mainNav.is-visible {
+    if the user changes the scrolling direction, we show the header
+    transform: translate3d(0, 100%, 0);
+    transition: all 1s ease;
+  } */
 }
 
 footer {

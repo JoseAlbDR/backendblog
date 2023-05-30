@@ -8,7 +8,7 @@
     <button class="mb-5" name="writeEntrie" value="newEntrie">Escribir Entrada</button>
   </form>
 <% }else{ %>
- <% postData.forEach(post =>{ %>
+ <% postData.slice().reverse().forEach(post =>{ %>
   <div class="post-preview">
     <form action="/" method="POST">
       <button type="submit" name="id" value="<%= post.id %>" class="btn-link text-start ">

@@ -23,7 +23,7 @@ export const aboutData = {
 
 export const homeData = {
   bgImg: "home-bg.jpg",
-  title: "Blog J.Alberto Delgado",
+  title: blogData.blogOwner,
   subtitle: "Aquí ire dejando dichas mis cositas.",
 };
 
