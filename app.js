@@ -4,7 +4,6 @@ import { fileURLToPath } from "url";
 import path from "path";
 import _ from "lodash";
 import {
-  // postData,
   aboutData,
   homeData,
   contactData,
