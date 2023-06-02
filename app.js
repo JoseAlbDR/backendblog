@@ -117,18 +117,18 @@ app.post("/", (req, res) => {
 });
 
 // Compose new post
-// app.post("/compose", (req, res) => {
-//   const data = req.body;
+app.post("/compose", (req, res) => {
+  const data = req.body;
 
-//   data.bgImg = req.body.bgImg || blogData.bgImg;
-//   data.id = postData.length;
-//   data.postDate = getDate();
-//   const post = new Post(data);
-//   post.save();
-//   // Save post and go home
-//   postData.push(data);
-//   res.redirect("/");
-// });
+  data.bgImg = req.body.bgImg || blogData.bgImg;
+  data.id = postData.length;
+  data.postDate = getDate();
+  const post = new Post(data);
+  post.save();
+  // Save post and go home
+  postData.push(data);
+  res.redirect("/");
+});
 
 // Get request
 // Route to root page (index)
@@ -149,12 +149,12 @@ app.get("/about", (req, res) => {
 });
 
 // Route to contact page
-app.get("/contact", (req, res) => {
-  res.render("contact", {
-    data: contactData,
-    blogData: blogData,
-  });
-});
+// app.get("/contact", (req, res) => {
+//   res.render("contact", {
+//     data: contactData,
+//     blogData: blogData,
+//   });
+// });
 
 // Route to post by id
 app.get("/posts/:id/:title", (req, res) => {
