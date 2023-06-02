@@ -117,18 +117,18 @@ app.post("/", (req, res) => {
 });
 
 // Compose new post
-app.post("/compose", (req, res) => {
-  const data = req.body;
+// app.post("/compose", (req, res) => {
+//   const data = req.body;
 
-  data.bgImg = req.body.bgImg || blogData.bgImg;
-  data.id = postData.length;
-  data.postDate = getDate();
-  const post = new Post(data);
-  post.save();
-  // Save post and go home
-  postData.push(data);
-  res.redirect("/");
-});
+//   data.bgImg = req.body.bgImg || blogData.bgImg;
+//   data.id = postData.length;
+//   data.postDate = getDate();
+//   const post = new Post(data);
+//   post.save();
+//   // Save post and go home
+//   postData.push(data);
+//   res.redirect("/");
+// });
 
 // Get request
 // Route to root page (index)
