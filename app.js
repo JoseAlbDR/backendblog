@@ -168,7 +168,7 @@ app.get("/posts/:id/:title", (req, res) => {
 });
 
 // Route to post page
-app.get("/post", (req, res) => {
+app.get("/last-post", (req, res) => {
   // Default data
   if (postData.length === 0) {
     res.render("post", {
