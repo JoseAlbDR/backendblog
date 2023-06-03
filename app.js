@@ -148,12 +148,12 @@ app.get("/about", (req, res) => {
 });
 
 // Route to contact page
-// app.get("/contact", (req, res) => {
-//   res.render("contact", {
-//     data: contactData,
-//     blogData: blogData,
-//   });
-// });
+app.get("/contact", (req, res) => {
+  res.render("contact", {
+    data: contactData,
+    blogData: blogData,
+  });
+});
 
 // Route to post by id
 app.get("/posts/:id/:title", (req, res) => {
@@ -196,12 +196,12 @@ app.get("/portfolio", (req, res) => {
 });
 
 // Route to compose page
-app.get("/compose", (req, res) => {
-  res.render("compose", {
-    data: composeData,
-    blogData: blogData,
-  });
-});
+// app.get("/compose", (req, res) => {
+//   res.render("compose", {
+//     data: composeData,
+//     blogData: blogData,
+//   });
+// });
 
 // Public dir
 app.use(express.static(__dirname + "/public"));
