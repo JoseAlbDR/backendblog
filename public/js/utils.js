@@ -4,6 +4,7 @@ export const getDate = function () {
     weekday: "long",
     day: "numeric",
     month: "long",
+    year: "numeric",
   });
   return date;
 };
