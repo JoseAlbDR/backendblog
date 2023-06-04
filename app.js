@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import pkg from "body-parser";
 import { fileURLToPath } from "url";
@@ -25,7 +26,7 @@ const __dirname = path.dirname(__filename);
 const dbConnect = async function () {
   try {
     await mongoose.connect(
-      `mongodb+srv://jadr:${PASS}@cluster0.en3wbp7.mongodb.net/blogDB`
+      `mongodb+srv://jadr:${process.env.PASS}@cluster0.en3wbp7.mongodb.net/blogDB`
     );
     console.log("DB connection succesfull.");
   } catch (err) {
