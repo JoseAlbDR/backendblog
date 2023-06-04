@@ -186,28 +186,29 @@ app.get("/posts/:id/:title", async (req, res) => {
 });
 
 // Route to post page
-app.get("/last-post", (req, res) => {
-  // Default data
-  if (postData.length === 0) {
-    res.render("post", {
-      data: blogData,
-      blogData: blogData,
-      title: blogData.defaultPost,
-      subtitle: "",
-      postData: [{ content: "Aun no hay post." }],
-      id: 0,
-    });
+// app.get("/last-post", (req, res) => {
+//   // Default data
+//   const postData = loadDB();
+//   if (postData.length === 0) {
+//     res.render("post", {
+//       data: blogData,
+//       blogData: blogData,
+//       title: blogData.defaultPost,
+//       subtitle: "",
+//       postData: [{ content: "Aun no hay post." }],
+//       id: 0,
+//     });
 
-    // Last post data
-  } else {
-    res.render("post", {
-      postData: postData,
-      blogData: blogData,
-      id: postData.length - 1,
-      data: postData[postData.length - 1],
-    });
-  }
-});
+//     // Last post data
+//   } else {
+//     res.render("post", {
+//       postData: postData,
+//       blogData: blogData,
+//       id: postData.length - 1,
+//       data: postData[postData.length - 1],
+//     });
+//   }
+// });
 
 // Route to external link
 app.get("/portfolio", (req, res) => {
