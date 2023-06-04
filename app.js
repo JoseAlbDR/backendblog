@@ -131,7 +131,7 @@ app.post("/", async (req, res) => {
 // Compose new post
 app.post("/compose", async (req, res) => {
   const rawData = req.body;
-
+  const postData = await loadDB();
   rawData.bgImg = req.body.bgImg || blogData.bgImg;
   rawData.id = postData.length;
   rawData.postDate = getDate();
