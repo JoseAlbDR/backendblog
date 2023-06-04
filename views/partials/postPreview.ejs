@@ -20,7 +20,8 @@
         </h3>
       </button>
     </form>
-    <p class="mb-1 mt-1"><%- post.content.slice(0, 60) %>...</p>
+    <p class="mb-1 mt-1"><%- post.content.slice(0, 150) %>...<a href="/posts/<%= post.id %>/<%= _.lowerCase(post.postTitle).split(" ")
+      .join("-")%>">Leer más</a></p>
     <p class="post-meta">
       Publicado por
       <a href=<%= post.web %> target="_blank"><%= post.author %></a>

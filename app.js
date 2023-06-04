@@ -151,6 +151,7 @@ app.get("/", async (req, res) => {
     postData: postData,
     data: homeData,
     blogData: blogData,
+    _: _,
   });
 });
 
