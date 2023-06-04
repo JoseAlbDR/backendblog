@@ -13,7 +13,6 @@ import {
 } from "./public/js/data.js";
 import { getDate } from "./public/js/utils.js";
 import mongoose from "mongoose";
-import { PASS } from "./private/config.js";
 
 const { urlencoded } = pkg;
 const port = 3001;
