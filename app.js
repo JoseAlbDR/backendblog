@@ -13,9 +13,14 @@ import {
 } from "./public/js/data.js";
 import { getDate } from "./public/js/utils.js";
 import mongoose from "mongoose";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
+import jsdom from "jsdom";
 
+const { JSDOM } = jsdom;
+const dompurify = DOMPurify(new JSDOM().window);
 const { urlencoded } = pkg;
-const port = 3001;
+const port = 3000;
 
 // Replacing __dirname in ES6 modules
 const __filename = fileURLToPath(import.meta.url);
@@ -78,7 +83,18 @@ const postSchema = mongoose.Schema({
     type: String,
   },
 });
-
+postSchema.pre("validate", function (next) {
+  if (this.content) {
+    console.log("triggered...");
+    marked.use({
+      mangle: false,
+      headerIds: false,
+    });
+    this.set("content", dompurify.sanitize(marked(this.content)));
+    console.log("content " + this.content);
+  }
+  next();
+});
 const Post = mongoose.model("Post", postSchema);
 
 const loadDB = async function () {
@@ -91,17 +107,14 @@ const loadDB = async function () {
   }
 };
 
-const postData = await loadDB();
-
-console.log(postData);
-
 // Express
 const app = express();
 app.use(urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 // Post request
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
+  const postData = await loadDB();
   // If there is no post, go make one
   if (postData.length === 0) {
     res.redirect("/compose");
@@ -116,26 +129,29 @@ app.post("/", (req, res) => {
 });
 
 // Compose new post
-app.post("/compose", (req, res) => {
-  const data = req.body;
+app.post("/compose", async (req, res) => {
+  const rawData = req.body;
 
-  data.bgImg = req.body.bgImg || blogData.bgImg;
-  data.id = postData.length;
-  data.postDate = getDate();
-  const post = new Post(data);
+  rawData.bgImg = req.body.bgImg || blogData.bgImg;
+  rawData.id = postData.length;
+  rawData.postDate = getDate();
+  const post = new Post(rawData);
+
   post.save();
-  // Save post and go home
-  postData.push(data);
+  // const data = await Post.findOne({ postTitle: rawData.postTitle });
+
   res.redirect("/");
 });
 
 // Get request
 // Route to root page (index)
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const postData = await loadDB();
   res.render("home", {
     postData: postData,
     data: homeData,
     blogData: blogData,
+    _: _,
   });
 });
 
@@ -156,7 +172,10 @@ app.get("/contact", (req, res) => {
 });
 
 // Route to post by id
-app.get("/posts/:id/:title", (req, res) => {
+app.get("/posts/:id/:title", async (req, res) => {
+  const postData = await loadDB();
+  console.log(postData);
+
   const id = req.params.id;
   res.render("post", {
     data: postData[id],
@@ -167,28 +186,29 @@ app.get("/posts/:id/:title", (req, res) => {
 });
 
 // Route to post page
-app.get("/last-post", (req, res) => {
-  // Default data
-  if (postData.length === 0) {
-    res.render("post", {
-      data: blogData,
-      blogData: blogData,
-      title: blogData.defaultPost,
-      subtitle: "",
-      postData: [{ content: "Aun no hay post." }],
-      id: 0,
-    });
+// app.get("/last-post", (req, res) => {
+//   // Default data
+//   const postData = loadDB();
+//   if (postData.length === 0) {
+//     res.render("post", {
+//       data: blogData,
+//       blogData: blogData,
+//       title: blogData.defaultPost,
+//       subtitle: "",
+//       postData: [{ content: "Aun no hay post." }],
+//       id: 0,
+//     });
 
-    // Last post data
-  } else {
-    res.render("post", {
-      postData: postData,
-      blogData: blogData,
-      id: postData.length - 1,
-      data: postData[postData.length - 1],
-    });
-  }
-});
+//     // Last post data
+//   } else {
+//     res.render("post", {
+//       postData: postData,
+//       blogData: blogData,
+//       id: postData.length - 1,
+//       data: postData[postData.length - 1],
+//     });
+//   }
+// });
 
 // Route to external link
 app.get("/portfolio", (req, res) => {
@@ -196,12 +216,12 @@ app.get("/portfolio", (req, res) => {
 });
 
 // Route to compose page
-// app.get("/compose", (req, res) => {
-//   res.render("compose", {
-//     data: composeData,
-//     blogData: blogData,
-//   });
-// });
+app.get("/compose", (req, res) => {
+  res.render("compose", {
+    data: composeData,
+    blogData: blogData,
+  });
+});
 
 // Public dir
 app.use(express.static(__dirname + "/public"));
